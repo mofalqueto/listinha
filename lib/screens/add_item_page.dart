@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../models/item.dart';
 
 class AddItemPage extends StatefulWidget {
@@ -12,8 +13,9 @@ class _AddItemPageState extends State<AddItemPage> {
   String selectedCategory = 'Compras';
 
   final TextEditingController nomeController = TextEditingController();
-  final TextEditingController quantidadeController =
-      TextEditingController(text: '1');
+  final TextEditingController quantidadeController = TextEditingController(
+    text: '1',
+  );
   final TextEditingController precoController = TextEditingController();
 
   @override
@@ -27,10 +29,7 @@ class _AddItemPageState extends State<AddItemPage> {
   void _adicionarItem() {
     final nome = nomeController.text.trim();
 
-    final quantidade = int.tryParse(
-          quantidadeController.text.trim(),
-        ) ??
-        1;
+    final quantidade = int.tryParse(quantidadeController.text.trim()) ?? 1;
 
     final precoTexto = precoController.text
         .trim()
@@ -42,9 +41,7 @@ class _AddItemPageState extends State<AddItemPage> {
 
     if (nome.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Digite o nome do produto.'),
-        ),
+        const SnackBar(content: Text('Digite o nome do produto.')),
       );
       return;
     }
@@ -85,9 +82,7 @@ class _AddItemPageState extends State<AddItemPage> {
         padding: const EdgeInsets.fromLTRB(22, 10, 22, 30),
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(
-              maxWidth: 650,
-            ),
+            constraints: const BoxConstraints(maxWidth: 650),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -103,10 +98,7 @@ class _AddItemPageState extends State<AddItemPage> {
                 const SizedBox(height: 8),
                 const Text(
                   'Adicione as informações do item à sua listinha.',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Color(0xFF777D89),
-                  ),
+                  style: TextStyle(fontSize: 14, color: Color(0xFF777D89)),
                 ),
                 const SizedBox(height: 28),
                 _label('Nome do produto'),
@@ -160,8 +152,7 @@ class _AddItemPageState extends State<AddItemPage> {
                           const SizedBox(height: 8),
                           TextField(
                             controller: precoController,
-                            keyboardType:
-                                const TextInputType.numberWithOptions(
+                            keyboardType: const TextInputType.numberWithOptions(
                               decimal: true,
                             ),
                             decoration: _inputDecoration(
@@ -181,9 +172,7 @@ class _AddItemPageState extends State<AddItemPage> {
                   child: FilledButton.icon(
                     onPressed: _adicionarItem,
                     icon: const Icon(Icons.add),
-                    label: const Text(
-                      'Adicionar à listinha',
-                    ),
+                    label: const Text('Adicionar à listinha'),
                     style: FilledButton.styleFrom(
                       backgroundColor: const Color(0xFFFFCC3E),
                       foregroundColor: const Color(0xFF17191D),
@@ -227,22 +216,15 @@ class _AddItemPageState extends State<AddItemPage> {
       fillColor: Colors.white,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(17),
-        borderSide: const BorderSide(
-          color: Color(0xFFE7E5E1),
-        ),
+        borderSide: const BorderSide(color: Color(0xFFE7E5E1)),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(17),
-        borderSide: const BorderSide(
-          color: Color(0xFFE7E5E1),
-        ),
+        borderSide: const BorderSide(color: Color(0xFFE7E5E1)),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(17),
-        borderSide: const BorderSide(
-          color: Color(0xFFFFCC3E),
-          width: 2,
-        ),
+        borderSide: const BorderSide(color: Color(0xFFFFCC3E), width: 2),
       ),
     );
   }
@@ -262,18 +244,12 @@ class _AddItemPageState extends State<AddItemPage> {
       backgroundColor: Colors.white,
       labelStyle: TextStyle(
         fontWeight: FontWeight.w700,
-        color: selected
-            ? const Color(0xFF17191D)
-            : const Color(0xFF646A73),
+        color: selected ? const Color(0xFF17191D) : const Color(0xFF646A73),
       ),
       side: BorderSide(
-        color: selected
-            ? const Color(0xFFFFCC3E)
-            : const Color(0xFFE7E5E1),
+        color: selected ? const Color(0xFFFFCC3E) : const Color(0xFFE7E5E1),
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(14),
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
     );
   }
 }

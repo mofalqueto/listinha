@@ -5,10 +5,7 @@ import 'ab_test_result_page.dart';
 class SettingsPage extends StatelessWidget {
   final VoidCallback onLimparLista;
 
-  const SettingsPage({
-    super.key,
-    required this.onLimparLista,
-  });
+  const SettingsPage({super.key, required this.onLimparLista});
 
   void _confirmarLimpeza(BuildContext context) {
     showDialog(
@@ -17,13 +14,9 @@ class SettingsPage extends StatelessWidget {
         return AlertDialog(
           title: const Text(
             'Limpar listinha?',
-            style: TextStyle(
-              fontWeight: FontWeight.w900,
-            ),
+            style: TextStyle(fontWeight: FontWeight.w900),
           ),
-          content: const Text(
-            'Todos os itens serão removidos da sua lista.',
-          ),
+          content: const Text('Todos os itens serão removidos da sua lista.'),
           actions: [
             TextButton(
               onPressed: () {
@@ -37,11 +30,7 @@ class SettingsPage extends StatelessWidget {
                 onLimparLista();
 
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(
-                    content: Text(
-                      'Listinha limpa com sucesso.',
-                    ),
-                  ),
+                  const SnackBar(content: Text('Listinha limpa com sucesso.')),
                 );
               },
               style: FilledButton.styleFrom(
@@ -50,9 +39,7 @@ class SettingsPage extends StatelessWidget {
               ),
               child: const Text(
                 'Limpar',
-                style: TextStyle(
-                  fontWeight: FontWeight.w800,
-                ),
+                style: TextStyle(fontWeight: FontWeight.w800),
               ),
             ),
           ],
@@ -64,9 +51,7 @@ class SettingsPage extends StatelessWidget {
   void _abrirResultadoAb(BuildContext context) {
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => const AbTestResultPage(),
-      ),
+      MaterialPageRoute(builder: (context) => const AbTestResultPage()),
     );
   }
 
@@ -77,12 +62,7 @@ class SettingsPage extends StatelessWidget {
       body: SafeArea(
         bottom: false,
         child: SingleChildScrollView(
-          padding: const EdgeInsets.fromLTRB(
-            22,
-            24,
-            22,
-            30,
-          ),
+          padding: const EdgeInsets.fromLTRB(22, 24, 22, 30),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -100,10 +80,7 @@ class SettingsPage extends StatelessWidget {
 
               const Text(
                 'Ajuste sua experiência no Listinha.',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Color(0xFF777D89),
-                ),
+                style: TextStyle(fontSize: 14, color: Color(0xFF777D89)),
               ),
 
               const SizedBox(height: 28),
@@ -111,7 +88,6 @@ class SettingsPage extends StatelessWidget {
               // =========================
               // MINHA CONTA
               // =========================
-
               _buildSectionTitle('Minha conta'),
 
               const SizedBox(height: 10),
@@ -177,7 +153,6 @@ class SettingsPage extends StatelessWidget {
               // =========================
               // PREFERÊNCIAS
               // =========================
-
               _buildSectionTitle('Preferências'),
 
               const SizedBox(height: 10),
@@ -188,18 +163,14 @@ class SettingsPage extends StatelessWidget {
                     _buildOption(
                       icon: Icons.notifications_none_rounded,
                       title: 'Lembretes',
-                      subtitle:
-                          'Em breve você poderá ativar lembretes.',
+                      subtitle: 'Em breve você poderá ativar lembretes.',
                       trailing: const Icon(
                         Icons.chevron_right,
                         color: Color(0xFF9A9DA5),
                       ),
                     ),
 
-                    const Divider(
-                      height: 26,
-                      color: Color(0xFFEAE9E6),
-                    ),
+                    const Divider(height: 26, color: Color(0xFFEAE9E6)),
 
                     _buildOption(
                       icon: Icons.palette_outlined,
@@ -219,7 +190,6 @@ class SettingsPage extends StatelessWidget {
               // =========================
               // EXPERIMENTO A/B
               // =========================
-
               _buildSectionTitle('Experimento'),
 
               const SizedBox(height: 10),
@@ -231,9 +201,7 @@ class SettingsPage extends StatelessWidget {
                     _abrirResultadoAb(context);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
                       children: [
                         Container(
@@ -253,8 +221,7 @@ class SettingsPage extends StatelessWidget {
 
                         const Expanded(
                           child: Column(
-                            crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Resultado do teste A/B',
@@ -291,7 +258,6 @@ class SettingsPage extends StatelessWidget {
               // =========================
               // DADOS
               // =========================
-
               _buildSectionTitle('Dados'),
 
               const SizedBox(height: 10),
@@ -303,9 +269,7 @@ class SettingsPage extends StatelessWidget {
                     _confirmarLimpeza(context);
                   },
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      vertical: 4,
-                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Row(
                       children: [
                         Container(
@@ -325,8 +289,7 @@ class SettingsPage extends StatelessWidget {
 
                         const Expanded(
                           child: Column(
-                            crossAxisAlignment:
-                                CrossAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 'Limpar listinha',
@@ -363,7 +326,6 @@ class SettingsPage extends StatelessWidget {
               // =========================
               // RODAPÉ
               // =========================
-
               const Center(
                 child: Column(
                   children: [
@@ -378,18 +340,12 @@ class SettingsPage extends StatelessWidget {
                     SizedBox(height: 4),
                     Text(
                       'Pra não esquecer nada. 💛',
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: Color(0xFF777D89),
-                      ),
+                      style: TextStyle(fontSize: 13, color: Color(0xFF777D89)),
                     ),
                     SizedBox(height: 4),
                     Text(
                       'Versão 1.0.0',
-                      style: TextStyle(
-                        fontSize: 12,
-                        color: Color(0xFFA0A3AA),
-                      ),
+                      style: TextStyle(fontSize: 12, color: Color(0xFFA0A3AA)),
                     ),
                   ],
                 ),
@@ -414,18 +370,14 @@ class SettingsPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCard({
-    required Widget child,
-  }) {
+  Widget _buildCard({required Widget child}) {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(22),
-        border: Border.all(
-          color: const Color(0xFFE8E7E4),
-        ),
+        border: Border.all(color: const Color(0xFFE8E7E4)),
       ),
       child: child,
     );
@@ -446,10 +398,7 @@ class SettingsPage extends StatelessWidget {
             color: const Color(0xFFFFF5D6),
             borderRadius: BorderRadius.circular(13),
           ),
-          child: Icon(
-            icon,
-            color: const Color(0xFFB98B00),
-          ),
+          child: Icon(icon, color: const Color(0xFFB98B00)),
         ),
 
         const SizedBox(width: 14),
@@ -469,10 +418,7 @@ class SettingsPage extends StatelessWidget {
               const SizedBox(height: 3),
               Text(
                 subtitle,
-                style: const TextStyle(
-                  fontSize: 13,
-                  color: Color(0xFF777D89),
-                ),
+                style: const TextStyle(fontSize: 13, color: Color(0xFF777D89)),
               ),
             ],
           ),

@@ -15,8 +15,7 @@ class AbTestResultPage extends StatelessWidget {
     const mediaA = acessosA / usuariosA;
     const mediaB = acessosB / usuariosB;
 
-    final diferencaPercentual =
-        ((mediaA - mediaB) / mediaB) * 100;
+    final diferencaPercentual = ((mediaA - mediaB) / mediaB) * 100;
 
     return Scaffold(
       backgroundColor: const Color(0xFFFAF9F6),
@@ -32,12 +31,7 @@ class AbTestResultPage extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.fromLTRB(
-          22,
-          18,
-          22,
-          30,
-        ),
+        padding: const EdgeInsets.fromLTRB(22, 18, 22, 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -51,17 +45,12 @@ class AbTestResultPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: const Color(0xFFFFF5D6),
                 borderRadius: BorderRadius.circular(20),
-                border: Border.all(
-                  color: const Color(0xFFFFE7A0),
-                ),
+                border: Border.all(color: const Color(0xFFFFE7A0)),
               ),
               child: const Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Icon(
-                    Icons.info_outline,
-                    color: Color(0xFFB98B00),
-                  ),
+                  Icon(Icons.info_outline, color: Color(0xFFB98B00)),
                   SizedBox(width: 12),
                   Expanded(
                     child: Text(
@@ -83,7 +72,6 @@ class AbTestResultPage extends StatelessWidget {
             // =========================
             // OBJETIVO
             // =========================
-
             const Text(
               'Objetivo do experimento',
               style: TextStyle(
@@ -111,11 +99,9 @@ class AbTestResultPage extends StatelessWidget {
             // =========================
             // VERSÃO A
             // =========================
-
             _buildVersionCard(
               titulo: 'Versão A',
-              subtitulo:
-                  'Categorias disponível na Home e na barra inferior',
+              subtitulo: 'Categorias disponível na Home e na barra inferior',
               icone: Icons.space_dashboard_outlined,
               fundo: const Color(0xFFFFF5D6),
               destaque: const Color(0xFFFFCC3E),
@@ -129,11 +115,9 @@ class AbTestResultPage extends StatelessWidget {
             // =========================
             // VERSÃO B
             // =========================
-
             _buildVersionCard(
               titulo: 'Versão B',
-              subtitulo:
-                  'Categorias disponível apenas pela Home',
+              subtitulo: 'Categorias disponível apenas pela Home',
               icone: Icons.home_outlined,
               fundo: const Color(0xFFEAF3FF),
               destaque: const Color(0xFFC8E1FF),
@@ -147,7 +131,6 @@ class AbTestResultPage extends StatelessWidget {
             // =========================
             // COMPARAÇÃO
             // =========================
-
             const Text(
               'Comparação A × B',
               style: TextStyle(
@@ -165,9 +148,7 @@ class AbTestResultPage extends StatelessWidget {
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(24),
-                border: Border.all(
-                  color: const Color(0xFFE8E7E4),
-                ),
+                border: Border.all(color: const Color(0xFFE8E7E4)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -198,7 +179,6 @@ class AbTestResultPage extends StatelessWidget {
             // =========================
             // RESULTADO PRINCIPAL
             // =========================
-
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(22),
@@ -211,10 +191,7 @@ class AbTestResultPage extends StatelessWidget {
                 children: [
                   const Row(
                     children: [
-                      Icon(
-                        Icons.analytics_outlined,
-                        color: Color(0xFFFFCC3E),
-                      ),
+                      Icon(Icons.analytics_outlined, color: Color(0xFFFFCC3E)),
                       SizedBox(width: 10),
                       Text(
                         'Resultado',
@@ -272,7 +249,6 @@ class AbTestResultPage extends StatelessWidget {
             // =========================
             // PERGUNTA DO EXPERIMENTO
             // =========================
-
             Container(
               width: double.infinity,
               padding: const EdgeInsets.all(18),
@@ -285,10 +261,7 @@ class AbTestResultPage extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Icon(
-                        Icons.science_outlined,
-                        color: Color(0xFF7656A8),
-                      ),
+                      Icon(Icons.science_outlined, color: Color(0xFF7656A8)),
                       SizedBox(width: 10),
                       Text(
                         'Pergunta do experimento',
@@ -351,10 +324,7 @@ class AbTestResultPage extends StatelessWidget {
                   color: destaque,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  icone,
-                  color: const Color(0xFF30343B),
-                ),
+                child: Icon(icone, color: const Color(0xFF30343B)),
               ),
 
               const SizedBox(width: 14),
@@ -391,16 +361,10 @@ class AbTestResultPage extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: _buildMetric(
-                  titulo: 'Usuários',
-                  valor: '$usuarios',
-                ),
+                child: _buildMetric(titulo: 'Usuários', valor: '$usuarios'),
               ),
               Expanded(
-                child: _buildMetric(
-                  titulo: 'Acessos',
-                  valor: '$acessos',
-                ),
+                child: _buildMetric(titulo: 'Acessos', valor: '$acessos'),
               ),
               Expanded(
                 child: _buildMetric(
@@ -415,19 +379,13 @@ class AbTestResultPage extends StatelessWidget {
     );
   }
 
-  Widget _buildMetric({
-    required String titulo,
-    required String valor,
-  }) {
+  Widget _buildMetric({required String titulo, required String valor}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           titulo,
-          style: const TextStyle(
-            fontSize: 12,
-            color: Color(0xFF777D89),
-          ),
+          style: const TextStyle(fontSize: 12, color: Color(0xFF777D89)),
         ),
         const SizedBox(height: 5),
         Text(
@@ -493,9 +451,7 @@ class AbTestResultPage extends StatelessWidget {
                 ),
 
                 AnimatedContainer(
-                  duration: const Duration(
-                    milliseconds: 500,
-                  ),
+                  duration: const Duration(milliseconds: 500),
                   height: 16,
                   width: constraints.maxWidth * proporcao,
                   decoration: BoxDecoration(

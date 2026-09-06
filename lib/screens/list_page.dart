@@ -40,10 +40,7 @@ class ListPage extends StatelessWidget {
               const SizedBox(height: 6),
               const Text(
                 'Marque os itens conforme for comprando.',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Color(0xFF777D89),
-                ),
+                style: TextStyle(fontSize: 14, color: Color(0xFF777D89)),
               ),
               const SizedBox(height: 24),
               Expanded(
@@ -51,8 +48,7 @@ class ListPage extends StatelessWidget {
                     ? _buildEstadoVazio()
                     : ListView.separated(
                         itemCount: items.length,
-                        separatorBuilder: (_, _) =>
-                            const SizedBox(height: 12),
+                        separatorBuilder: (_, _) => const SizedBox(height: 12),
                         itemBuilder: (context, index) {
                           final item = items[index];
 
@@ -72,10 +68,7 @@ class ListPage extends StatelessWidget {
                                   activeColor: const Color(0xFFFFCC3E),
                                   checkColor: const Color(0xFF17191D),
                                   onChanged: (value) {
-                                    onToggleComprado(
-                                      index,
-                                      value ?? false,
-                                    );
+                                    onToggleComprado(index, value ?? false);
                                   },
                                 ),
                                 const SizedBox(width: 8),
@@ -108,8 +101,7 @@ class ListPage extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 12),
                                 Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
                                       'R\$ ${_formatarPreco(item.total)}',
@@ -176,10 +168,7 @@ class ListPage extends StatelessWidget {
           const Text(
             'Adicione produtos pela tela inicial.',
             textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 14,
-              color: Color(0xFF777D89),
-            ),
+            style: TextStyle(fontSize: 14, color: Color(0xFF777D89)),
           ),
         ],
       ),

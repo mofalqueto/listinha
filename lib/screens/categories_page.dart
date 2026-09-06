@@ -5,10 +5,7 @@ import '../models/item.dart';
 class CategoriesPage extends StatefulWidget {
   final List<Item> items;
 
-  const CategoriesPage({
-    super.key,
-    required this.items,
-  });
+  const CategoriesPage({super.key, required this.items});
 
   @override
   State<CategoriesPage> createState() => _CategoriesPageState();
@@ -55,18 +52,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
   }
 
   int _quantidadeCategoria(String categoria) {
-    return widget.items
-        .where((item) => item.categoria == categoria)
-        .length;
+    return widget.items.where((item) => item.categoria == categoria).length;
   }
 
   double _totalCategoria(String categoria) {
     return widget.items
         .where((item) => item.categoria == categoria)
-        .fold(
-          0.0,
-          (total, item) => total + item.total,
-        );
+        .fold(0.0, (total, item) => total + item.total);
   }
 
   String _formatarPreco(double valor) {
@@ -92,10 +84,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   },
                   borderRadius: BorderRadius.circular(12),
                   child: const Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 4,
-                      vertical: 8,
-                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 4, vertical: 8),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -131,10 +120,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               const SizedBox(height: 6),
               const Text(
                 'Veja seus produtos organizados por categoria.',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Color(0xFF777D89),
-                ),
+                style: TextStyle(fontSize: 14, color: Color(0xFF777D89)),
               ),
               const SizedBox(height: 24),
               SizedBox(
@@ -142,15 +128,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: categorias.length,
-                  separatorBuilder: (_, _) =>
-                      const SizedBox(width: 12),
+                  separatorBuilder: (_, _) => const SizedBox(width: 12),
                   itemBuilder: (context, index) {
                     final categoria = categorias[index];
 
                     final nome = categoria['nome'] as String;
 
-                    final selecionada =
-                        categoriaSelecionada == nome;
+                    final selecionada = categoriaSelecionada == nome;
 
                     return GestureDetector(
                       onTap: () {
@@ -163,15 +147,12 @@ class _CategoriesPageState extends State<CategoriesPage> {
                         });
                       },
                       child: AnimatedContainer(
-                        duration: const Duration(
-                          milliseconds: 200,
-                        ),
+                        duration: const Duration(milliseconds: 200),
                         width: 180,
                         padding: const EdgeInsets.all(16),
                         decoration: BoxDecoration(
                           color: categoria['fundo'] as Color,
-                          borderRadius:
-                              BorderRadius.circular(24),
+                          borderRadius: BorderRadius.circular(24),
                           border: Border.all(
                             color: selecionada
                                 ? const Color(0xFF17191D)
@@ -180,8 +161,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                           ),
                         ),
                         child: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(
                               children: [
@@ -189,26 +169,19 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                   width: 42,
                                   height: 42,
                                   decoration: BoxDecoration(
-                                    color:
-                                        categoria['iconeFundo']
-                                            as Color,
+                                    color: categoria['iconeFundo'] as Color,
                                     shape: BoxShape.circle,
                                   ),
                                   child: Icon(
-                                    categoria['icone']
-                                        as IconData,
-                                    color: const Color(
-                                      0xFF30343B,
-                                    ),
+                                    categoria['icone'] as IconData,
+                                    color: const Color(0xFF30343B),
                                   ),
                                 ),
                                 const Spacer(),
                                 if (selecionada)
                                   const Icon(
                                     Icons.check_circle,
-                                    color: Color(
-                                      0xFF17191D,
-                                    ),
+                                    color: Color(0xFF17191D),
                                     size: 20,
                                   ),
                               ],
@@ -218,11 +191,8 @@ class _CategoriesPageState extends State<CategoriesPage> {
                               nome,
                               style: const TextStyle(
                                 fontSize: 16,
-                                fontWeight:
-                                    FontWeight.w900,
-                                color: Color(
-                                  0xFF202329,
-                                ),
+                                fontWeight: FontWeight.w900,
+                                color: Color(0xFF202329),
                               ),
                             ),
                             const SizedBox(height: 3),
@@ -230,9 +200,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                               '${_quantidadeCategoria(nome)} itens • R\$ ${_formatarPreco(_totalCategoria(nome))}',
                               style: const TextStyle(
                                 fontSize: 12,
-                                color: Color(
-                                  0xFF60646D,
-                                ),
+                                color: Color(0xFF60646D),
                               ),
                             ),
                           ],
@@ -244,8 +212,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               ),
               const SizedBox(height: 26),
               Row(
-                mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     categoriaSelecionada == null
@@ -280,25 +247,17 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     ? _buildEstadoVazio()
                     : ListView.separated(
                         itemCount: itensFiltrados.length,
-                        separatorBuilder: (_, _) =>
-                            const SizedBox(height: 10),
+                        separatorBuilder: (_, _) => const SizedBox(height: 10),
                         itemBuilder: (context, index) {
-                          final item =
-                              itensFiltrados[index];
+                          final item = itensFiltrados[index];
 
                           return Container(
-                            padding:
-                                const EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               color: Colors.white,
-                              borderRadius:
-                                  BorderRadius.circular(
-                                20,
-                              ),
+                              borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                color: const Color(
-                                  0xFFE8E7E4,
-                                ),
+                                color: const Color(0xFFE8E7E4),
                               ),
                             ),
                             child: Row(
@@ -306,107 +265,64 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                 Container(
                                   width: 46,
                                   height: 46,
-                                  decoration:
-                                      BoxDecoration(
-                                    color: const Color(
-                                      0xFFFFF5D6,
-                                    ),
-                                    borderRadius:
-                                        BorderRadius.circular(
-                                      14,
-                                    ),
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xFFFFF5D6),
+                                    borderRadius: BorderRadius.circular(14),
                                   ),
                                   child: const Icon(
-                                    Icons
-                                        .shopping_bag_outlined,
-                                    color: Color(
-                                      0xFFF2B900,
-                                    ),
+                                    Icons.shopping_bag_outlined,
+                                    color: Color(0xFFF2B900),
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 14,
-                                ),
+                                const SizedBox(width: 14),
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment
-                                            .start,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         item.nome,
-                                        style:
-                                            TextStyle(
+                                        style: TextStyle(
                                           fontSize: 16,
-                                          fontWeight:
-                                              FontWeight
-                                                  .w900,
-                                          color:
-                                              const Color(
-                                            0xFF17191D,
-                                          ),
-                                          decoration:
-                                              item.comprado
-                                                  ? TextDecoration
-                                                      .lineThrough
-                                                  : null,
+                                          fontWeight: FontWeight.w900,
+                                          color: const Color(0xFF17191D),
+                                          decoration: item.comprado
+                                              ? TextDecoration.lineThrough
+                                              : null,
                                         ),
                                       ),
-                                      const SizedBox(
-                                        height: 4,
-                                      ),
+                                      const SizedBox(height: 4),
                                       Text(
                                         '${item.categoria} • ${item.quantidade} un.',
-                                        style:
-                                            const TextStyle(
+                                        style: const TextStyle(
                                           fontSize: 13,
-                                          color: Color(
-                                            0xFF777D89,
-                                          ),
+                                          color: Color(0xFF777D89),
                                         ),
                                       ),
                                     ],
                                   ),
                                 ),
-                                const SizedBox(
-                                  width: 12,
-                                ),
+                                const SizedBox(width: 12),
                                 Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment
-                                          .end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
                                     Text(
                                       'R\$ ${_formatarPreco(item.total)}',
-                                      style:
-                                          const TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 15,
-                                        fontWeight:
-                                            FontWeight
-                                                .w900,
-                                        color: Color(
-                                          0xFF17191D,
-                                        ),
+                                        fontWeight: FontWeight.w900,
+                                        color: Color(0xFF17191D),
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 6,
-                                    ),
+                                    const SizedBox(height: 6),
                                     Icon(
                                       item.comprado
-                                          ? Icons
-                                              .check_circle
-                                          : Icons
-                                              .radio_button_unchecked,
+                                          ? Icons.check_circle
+                                          : Icons.radio_button_unchecked,
                                       size: 18,
-                                      color:
-                                          item.comprado
-                                              ? const Color(
-                                                  0xFF62A65E,
-                                                )
-                                              : const Color(
-                                                  0xFFB4B6BC,
-                                                ),
+                                      color: item.comprado
+                                          ? const Color(0xFF62A65E)
+                                          : const Color(0xFFB4B6BC),
                                     ),
                                   ],
                                 ),
@@ -426,16 +342,14 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget _buildEstadoVazio() {
     return Center(
       child: Column(
-        mainAxisAlignment:
-            MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             width: 90,
             height: 90,
             decoration: BoxDecoration(
               color: const Color(0xFFFFF5D6),
-              borderRadius:
-                  BorderRadius.circular(28),
+              borderRadius: BorderRadius.circular(28),
             ),
             child: const Icon(
               Icons.category_outlined,
@@ -458,10 +372,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 ? 'Sua listinha ainda não tem produtos.'
                 : 'Não há produtos nesta categoria.',
             textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 14,
-              color: Color(0xFF777D89),
-            ),
+            style: const TextStyle(fontSize: 14, color: Color(0xFF777D89)),
           ),
         ],
       ),

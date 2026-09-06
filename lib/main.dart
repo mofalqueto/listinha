@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'screens/home_page.dart';
 
 void main() {
@@ -16,9 +17,7 @@ class ListinhaApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: 'Arial',
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFFFFCC3E),
-        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFFFCC3E)),
       ),
       home: const HomePage(),
     );

@@ -4,8 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AbTestService {
   static const String _chaveVersao = 'ab_test_categorias_versao';
-  static const String _chaveAcessosHome =
-      'ab_test_categorias_acessos_home';
+  static const String _chaveAcessosHome = 'ab_test_categorias_acessos_home';
   static const String _chaveAcessosNavegacao =
       'ab_test_categorias_acessos_navegacao';
 
@@ -30,10 +29,7 @@ class AbTestService {
 
     final acessos = prefs.getInt(_chaveAcessosHome) ?? 0;
 
-    await prefs.setInt(
-      _chaveAcessosHome,
-      acessos + 1,
-    );
+    await prefs.setInt(_chaveAcessosHome, acessos + 1);
   }
 
   static Future<void> registrarAcessoNavegacao() async {
@@ -41,10 +37,7 @@ class AbTestService {
 
     final acessos = prefs.getInt(_chaveAcessosNavegacao) ?? 0;
 
-    await prefs.setInt(
-      _chaveAcessosNavegacao,
-      acessos + 1,
-    );
+    await prefs.setInt(_chaveAcessosNavegacao, acessos + 1);
   }
 
   static Future<int> obterAcessosHome() async {

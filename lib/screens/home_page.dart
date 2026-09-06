@@ -59,10 +59,7 @@ class _HomePageState extends State<HomePage> {
     await StorageService.salvarItens(items);
   }
 
-  Future<void> _alternarComprado(
-    int index,
-    bool comprado,
-  ) async {
+  Future<void> _alternarComprado(int index, bool comprado) async {
     setState(() {
       items[index].comprado = comprado;
     });
@@ -93,11 +90,7 @@ class _HomePageState extends State<HomePage> {
 
     await Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => CategoriesPage(
-          items: items,
-        ),
-      ),
+      MaterialPageRoute(builder: (context) => CategoriesPage(items: items)),
     );
 
     if (mounted) {
@@ -127,9 +120,7 @@ class _HomePageState extends State<HomePage> {
       return const Scaffold(
         backgroundColor: Color(0xFFFAF9F6),
         body: Center(
-          child: CircularProgressIndicator(
-            color: Color(0xFFFFCC3E),
-          ),
+          child: CircularProgressIndicator(color: Color(0xFFFFCC3E)),
         ),
       );
     }
@@ -162,12 +153,8 @@ class _HomePageState extends State<HomePage> {
             onToggleComprado: _alternarComprado,
             onExcluirItem: _excluirItem,
           ),
-          CategoriesPage(
-            items: items,
-          ),
-          SettingsPage(
-            onLimparLista: _limparLista,
-          ),
+          CategoriesPage(items: items),
+          SettingsPage(onLimparLista: _limparLista),
         ],
       ),
       bottomNavigationBar: NavigationBar(
@@ -221,9 +208,7 @@ class _HomePageState extends State<HomePage> {
             onToggleComprado: _alternarComprado,
             onExcluirItem: _excluirItem,
           ),
-          SettingsPage(
-            onLimparLista: _limparLista,
-          ),
+          SettingsPage(onLimparLista: _limparLista),
         ],
       ),
       bottomNavigationBar: NavigationBar(
@@ -269,10 +254,7 @@ class HomeContent extends StatelessWidget {
   });
 
   double get totalEstimado {
-    return items.fold(
-      0.0,
-      (total, item) => total + item.total,
-    );
+    return items.fold(0.0, (total, item) => total + item.total);
   }
 
   int get itensComprados {
@@ -280,23 +262,17 @@ class HomeContent extends StatelessWidget {
   }
 
   int _quantidadeCategoria(String categoria) {
-    return items
-        .where((item) => item.categoria == categoria)
-        .length;
+    return items.where((item) => item.categoria == categoria).length;
   }
 
   String _formatarPreco(double valor) {
     return valor.toStringAsFixed(2).replaceAll('.', ',');
   }
 
-  Future<void> _abrirAdicionarItem(
-    BuildContext context,
-  ) async {
+  Future<void> _abrirAdicionarItem(BuildContext context) async {
     final item = await Navigator.push<Item>(
       context,
-      MaterialPageRoute(
-        builder: (context) => const AddItemPage(),
-      ),
+      MaterialPageRoute(builder: (context) => const AddItemPage()),
     );
 
     if (item != null) {
@@ -319,54 +295,43 @@ class HomeContent extends StatelessWidget {
           ),
           child: Center(
             child: ConstrainedBox(
-              constraints: const BoxConstraints(
-                maxWidth: 1000,
-              ),
+              constraints: const BoxConstraints(maxWidth: 1000),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    crossAxisAlignment:
-                        CrossAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
                         child: Column(
-                          crossAxisAlignment:
-                              CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               'Olá, Mô! 👋',
                               style: TextStyle(
                                 fontSize: compact ? 16 : 18,
-                                color:
-                                    const Color(0xFF6F7480),
-                                fontWeight:
-                                    FontWeight.w500,
+                                color: const Color(0xFF6F7480),
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                             const SizedBox(height: 5),
                             Text(
                               'Minha Listinha',
                               style: TextStyle(
-                                fontSize:
-                                    compact ? 30 : 38,
+                                fontSize: compact ? 30 : 38,
                                 height: 1.05,
-                                fontWeight:
-                                    FontWeight.w900,
+                                fontWeight: FontWeight.w900,
                                 letterSpacing: -1.2,
-                                color:
-                                    const Color(0xFF17191D),
+                                color: const Color(0xFF17191D),
                               ),
                             ),
                             const SizedBox(height: 8),
                             Text(
                               'Organize suas compras de forma simples\ne prática.',
                               style: TextStyle(
-                                fontSize:
-                                    compact ? 14 : 16,
+                                fontSize: compact ? 14 : 16,
                                 height: 1.4,
-                                color:
-                                    const Color(0xFF777D89),
+                                color: const Color(0xFF777D89),
                               ),
                             ),
                           ],
@@ -377,18 +342,13 @@ class HomeContent extends StatelessWidget {
                         width: compact ? 58 : 70,
                         height: compact ? 58 : 70,
                         decoration: BoxDecoration(
-                          color:
-                              const Color(0xFFFFCC3E),
+                          color: const Color(0xFFFFCC3E),
                           shape: BoxShape.circle,
                           boxShadow: [
                             BoxShadow(
-                              color:
-                                  Colors.black.withValues(
-                                alpha: 0.08,
-                              ),
+                              color: Colors.black.withValues(alpha: 0.08),
                               blurRadius: 15,
-                              offset:
-                                  const Offset(0, 6),
+                              offset: const Offset(0, 6),
                             ),
                           ],
                         ),
@@ -396,12 +356,9 @@ class HomeContent extends StatelessWidget {
                           child: Text(
                             'M',
                             style: TextStyle(
-                              fontSize:
-                                  compact ? 23 : 28,
-                              fontWeight:
-                                  FontWeight.w900,
-                              color:
-                                  const Color(0xFF17191D),
+                              fontSize: compact ? 23 : 28,
+                              fontWeight: FontWeight.w900,
+                              color: const Color(0xFF17191D),
                             ),
                           ),
                         ),
@@ -412,35 +369,25 @@ class HomeContent extends StatelessWidget {
                   _buildTotalCard(compact),
                   const SizedBox(height: 30),
                   Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
                         'Categorias',
                         style: TextStyle(
                           fontSize: 22,
-                          fontWeight:
-                              FontWeight.w900,
-                          color:
-                              Color(0xFF17191D),
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xFF17191D),
                         ),
                       ),
                       TextButton.icon(
                         onPressed: onAbrirCategorias,
-                        icon: const Icon(
-                          Icons.arrow_forward,
-                          size: 17,
-                        ),
+                        icon: const Icon(Icons.arrow_forward, size: 17),
                         label: const Text(
                           'Ver todas',
-                          style: TextStyle(
-                            fontWeight:
-                                FontWeight.w700,
-                          ),
+                          style: TextStyle(fontWeight: FontWeight.w700),
                         ),
                         style: TextButton.styleFrom(
-                          foregroundColor:
-                              const Color(0xFF737987),
+                          foregroundColor: const Color(0xFF737987),
                         ),
                       ),
                     ],
@@ -450,15 +397,11 @@ class HomeContent extends StatelessWidget {
                     children: [
                       Expanded(
                         child: _categoryCard(
-                          icon: Icons
-                              .shopping_cart_outlined,
+                          icon: Icons.shopping_cart_outlined,
                           title: 'Compras',
-                          count:
-                              '${_quantidadeCategoria('Compras')} itens',
-                          background:
-                              const Color(0xFFFFF5D6),
-                          iconBackground:
-                              const Color(0xFFFFD65A),
+                          count: '${_quantidadeCategoria('Compras')} itens',
+                          background: const Color(0xFFFFF5D6),
+                          iconBackground: const Color(0xFFFFD65A),
                           onTap: onAbrirCategorias,
                         ),
                       ),
@@ -467,12 +410,9 @@ class HomeContent extends StatelessWidget {
                         child: _categoryCard(
                           icon: Icons.apple,
                           title: 'Hortifruti',
-                          count:
-                              '${_quantidadeCategoria('Hortifruti')} itens',
-                          background:
-                              const Color(0xFFEAF7E9),
-                          iconBackground:
-                              const Color(0xFFBDE9B8),
+                          count: '${_quantidadeCategoria('Hortifruti')} itens',
+                          background: const Color(0xFFEAF7E9),
+                          iconBackground: const Color(0xFFBDE9B8),
                           onTap: onAbrirCategorias,
                         ),
                       ),
@@ -483,15 +423,11 @@ class HomeContent extends StatelessWidget {
                     children: [
                       Expanded(
                         child: _categoryCard(
-                          icon: Icons
-                              .cleaning_services_outlined,
+                          icon: Icons.cleaning_services_outlined,
                           title: 'Limpeza',
-                          count:
-                              '${_quantidadeCategoria('Limpeza')} itens',
-                          background:
-                              const Color(0xFFEAF3FF),
-                          iconBackground:
-                              const Color(0xFFC8E1FF),
+                          count: '${_quantidadeCategoria('Limpeza')} itens',
+                          background: const Color(0xFFEAF3FF),
+                          iconBackground: const Color(0xFFC8E1FF),
                           onTap: onAbrirCategorias,
                         ),
                       ),
@@ -500,12 +436,9 @@ class HomeContent extends StatelessWidget {
                         child: _categoryCard(
                           icon: Icons.home_outlined,
                           title: 'Casa',
-                          count:
-                              '${_quantidadeCategoria('Casa')} itens',
-                          background:
-                              const Color(0xFFF2EBFF),
-                          iconBackground:
-                              const Color(0xFFDCCAFF),
+                          count: '${_quantidadeCategoria('Casa')} itens',
+                          background: const Color(0xFFF2EBFF),
+                          iconBackground: const Color(0xFFDCCAFF),
                           onTap: onAbrirCategorias,
                         ),
                       ),
@@ -535,31 +468,24 @@ class HomeContent extends StatelessWidget {
   }
 
   Widget _buildTotalCard(bool compact) {
-    final progresso = items.isEmpty
-        ? 0.0
-        : itensComprados / items.length;
+    final progresso = items.isEmpty ? 0.0 : itensComprados / items.length;
 
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.all(
-        compact ? 22 : 28,
-      ),
+      padding: EdgeInsets.all(compact ? 22 : 28),
       decoration: BoxDecoration(
         color: const Color(0xFF20242C),
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(
-              alpha: 0.12,
-            ),
+            color: Colors.black.withValues(alpha: 0.12),
             blurRadius: 25,
             offset: const Offset(0, 12),
           ),
         ],
       ),
       child: Column(
-        crossAxisAlignment:
-            CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             children: [
@@ -567,14 +493,11 @@ class HomeContent extends StatelessWidget {
                 width: 42,
                 height: 42,
                 decoration: BoxDecoration(
-                  color:
-                      const Color(0xFFFFCC3E),
-                  borderRadius:
-                      BorderRadius.circular(13),
+                  color: const Color(0xFFFFCC3E),
+                  borderRadius: BorderRadius.circular(13),
                 ),
                 child: const Icon(
-                  Icons
-                      .account_balance_wallet_outlined,
+                  Icons.account_balance_wallet_outlined,
                   color: Color(0xFF17191D),
                   size: 22,
                 ),
@@ -586,31 +509,24 @@ class HomeContent extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white70,
                     fontSize: 13,
-                    fontWeight:
-                        FontWeight.w800,
+                    fontWeight: FontWeight.w800,
                     letterSpacing: 1,
                   ),
                 ),
               ),
               Container(
-                padding:
-                    const EdgeInsets.symmetric(
+                padding: const EdgeInsets.symmetric(
                   horizontal: 12,
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color:
-                      Colors.white.withValues(
-                    alpha: 0.09,
-                  ),
-                  borderRadius:
-                      BorderRadius.circular(13),
+                  color: Colors.white.withValues(alpha: 0.09),
+                  borderRadius: BorderRadius.circular(13),
                 ),
                 child: Row(
                   children: [
                     const Icon(
-                      Icons
-                          .shopping_cart_outlined,
+                      Icons.shopping_cart_outlined,
                       size: 16,
                       color: Colors.white70,
                     ),
@@ -619,8 +535,7 @@ class HomeContent extends StatelessWidget {
                       '${items.length} itens',
                       style: const TextStyle(
                         color: Colors.white,
-                        fontWeight:
-                            FontWeight.w700,
+                        fontWeight: FontWeight.w700,
                         fontSize: 12,
                       ),
                     ),
@@ -641,18 +556,12 @@ class HomeContent extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ClipRRect(
-            borderRadius:
-                BorderRadius.circular(10),
+            borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
               value: progresso,
               minHeight: 9,
-              backgroundColor:
-                  Colors.white.withValues(
-                alpha: 0.12,
-              ),
-              valueColor:
-                  const AlwaysStoppedAnimation<
-                      Color>(
+              backgroundColor: Colors.white.withValues(alpha: 0.12),
+              valueColor: const AlwaysStoppedAnimation<Color>(
                 Color(0xFFFFCC3E),
               ),
             ),
@@ -662,39 +571,24 @@ class HomeContent extends StatelessWidget {
             items.isEmpty
                 ? 'Nenhum item comprado ainda'
                 : '$itensComprados de ${items.length} itens comprados',
-            style: const TextStyle(
-              color: Colors.white60,
-              fontSize: 13,
-            ),
+            style: const TextStyle(color: Colors.white60, fontSize: 13),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildEstadoVazio(
-    BuildContext context,
-  ) {
+  Widget _buildEstadoVazio(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding:
-          const EdgeInsets.symmetric(
-        horizontal: 24,
-        vertical: 32,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius:
-            BorderRadius.circular(28),
-        border: Border.all(
-          color: const Color(0xFFE8E7E4),
-        ),
+        borderRadius: BorderRadius.circular(28),
+        border: Border.all(color: const Color(0xFFE8E7E4)),
         boxShadow: [
           BoxShadow(
-            color:
-                Colors.black.withValues(
-              alpha: 0.035,
-            ),
+            color: Colors.black.withValues(alpha: 0.035),
             blurRadius: 20,
             offset: const Offset(0, 8),
           ),
@@ -706,17 +600,14 @@ class HomeContent extends StatelessWidget {
             width: 86,
             height: 86,
             decoration: BoxDecoration(
-              color:
-                  const Color(0xFFFFF5D6),
-              borderRadius:
-                  BorderRadius.circular(28),
+              color: const Color(0xFFFFF5D6),
+              borderRadius: BorderRadius.circular(28),
             ),
             child: const Center(
               child: Icon(
                 Icons.shopping_bag_outlined,
                 size: 43,
-                color:
-                    Color(0xFFF2B900),
+                color: Color(0xFFF2B900),
               ),
             ),
           ),
@@ -742,36 +633,17 @@ class HomeContent extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           FilledButton.icon(
-            onPressed: () =>
-                _abrirAdicionarItem(
-              context,
-            ),
+            onPressed: () => _abrirAdicionarItem(context),
             icon: const Icon(Icons.add),
-            label: const Text(
-              'Adicionar primeiro item',
-            ),
+            label: const Text('Adicionar primeiro item'),
             style: FilledButton.styleFrom(
-              backgroundColor:
-                  const Color(0xFFFFCC3E),
-              foregroundColor:
-                  const Color(0xFF17191D),
-              padding:
-                  const EdgeInsets.symmetric(
-                horizontal: 20,
-                vertical: 14,
+              backgroundColor: const Color(0xFFFFCC3E),
+              foregroundColor: const Color(0xFF17191D),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
               ),
-              shape:
-                  RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(
-                  15,
-                ),
-              ),
-              textStyle:
-                  const TextStyle(
-                fontWeight:
-                    FontWeight.w800,
-              ),
+              textStyle: const TextStyle(fontWeight: FontWeight.w800),
             ),
           ),
         ],
@@ -779,95 +651,55 @@ class HomeContent extends StatelessWidget {
     );
   }
 
-  Widget _buildListaItens(
-    BuildContext context,
-  ) {
+  Widget _buildListaItens(BuildContext context) {
     return Column(
       children: [
         ...items.map(
           (item) => Padding(
-            padding:
-                const EdgeInsets.only(
-              bottom: 12,
-            ),
+            padding: const EdgeInsets.only(bottom: 12),
             child: Container(
-              padding:
-                  const EdgeInsets.all(
-                16,
-              ),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                 color: Colors.white,
-                borderRadius:
-                    BorderRadius.circular(
-                  20,
-                ),
-                border: Border.all(
-                  color:
-                      const Color(
-                    0xFFE8E7E4,
-                  ),
-                ),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: const Color(0xFFE8E7E4)),
               ),
               child: Row(
                 children: [
                   Container(
                     width: 46,
                     height: 46,
-                    decoration:
-                        BoxDecoration(
-                      color:
-                          const Color(
-                        0xFFFFF5D6,
-                      ),
-                      borderRadius:
-                          BorderRadius.circular(
-                        14,
-                      ),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFFFF5D6),
+                      borderRadius: BorderRadius.circular(14),
                     ),
                     child: const Icon(
-                      Icons
-                          .shopping_bag_outlined,
-                      color:
-                          Color(0xFFF2B900),
+                      Icons.shopping_bag_outlined,
+                      color: Color(0xFFF2B900),
                     ),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
                     child: Column(
-                      crossAxisAlignment:
-                          CrossAxisAlignment
-                              .start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           item.nome,
                           style: TextStyle(
                             fontSize: 16,
-                            fontWeight:
-                                FontWeight
-                                    .w900,
-                            color:
-                                const Color(
-                              0xFF17191D,
-                            ),
-                            decoration:
-                                item.comprado
-                                    ? TextDecoration
-                                        .lineThrough
-                                    : null,
+                            fontWeight: FontWeight.w900,
+                            color: const Color(0xFF17191D),
+                            decoration: item.comprado
+                                ? TextDecoration.lineThrough
+                                : null,
                           ),
                         ),
-                        const SizedBox(
-                          height: 4,
-                        ),
+                        const SizedBox(height: 4),
                         Text(
                           '${item.categoria} • ${item.quantidade} un.',
-                          style:
-                              const TextStyle(
+                          style: const TextStyle(
                             fontSize: 13,
-                            color:
-                                Color(
-                              0xFF777D89,
-                            ),
+                            color: Color(0xFF777D89),
                           ),
                         ),
                       ],
@@ -875,13 +707,10 @@ class HomeContent extends StatelessWidget {
                   ),
                   Text(
                     'R\$ ${_formatarPreco(item.total)}',
-                    style:
-                        const TextStyle(
+                    style: const TextStyle(
                       fontSize: 15,
-                      fontWeight:
-                          FontWeight.w900,
-                      color:
-                          Color(0xFF17191D),
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xFF17191D),
                     ),
                   ),
                 ],
@@ -893,34 +722,15 @@ class HomeContent extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
-            onPressed: () =>
-                _abrirAdicionarItem(
-              context,
-            ),
+            onPressed: () => _abrirAdicionarItem(context),
             icon: const Icon(Icons.add),
-            label: const Text(
-              'Adicionar outro item',
-            ),
-            style:
-                OutlinedButton.styleFrom(
-              foregroundColor:
-                  const Color(
-                0xFF17191D,
-              ),
-              side: const BorderSide(
-                color:
-                    Color(0xFFFFCC3E),
-              ),
-              padding:
-                  const EdgeInsets.symmetric(
-                vertical: 15,
-              ),
-              shape:
-                  RoundedRectangleBorder(
-                borderRadius:
-                    BorderRadius.circular(
-                  15,
-                ),
+            label: const Text('Adicionar outro item'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: const Color(0xFF17191D),
+              side: const BorderSide(color: Color(0xFFFFCC3E)),
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15),
               ),
             ),
           ),
@@ -940,70 +750,46 @@ class HomeContent extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
-        borderRadius:
-            BorderRadius.circular(22),
+        borderRadius: BorderRadius.circular(22),
         onTap: onTap,
         child: Container(
-          padding:
-              const EdgeInsets.all(15),
+          padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             color: background,
-            borderRadius:
-                BorderRadius.circular(22),
+            borderRadius: BorderRadius.circular(22),
           ),
           child: Row(
             children: [
               Container(
                 width: 48,
                 height: 48,
-                decoration:
-                    BoxDecoration(
+                decoration: BoxDecoration(
                   color: iconBackground,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  icon,
-                  color:
-                      const Color(
-                    0xFF30343B,
-                  ),
-                  size: 25,
-                ),
+                child: Icon(icon, color: const Color(0xFF30343B), size: 25),
               ),
               const SizedBox(width: 11),
               Expanded(
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment
-                          .start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       title,
                       maxLines: 1,
-                      overflow:
-                          TextOverflow
-                              .ellipsis,
-                      style:
-                          const TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
                         fontSize: 15,
-                        fontWeight:
-                            FontWeight
-                                .w800,
-                        color:
-                            Color(
-                          0xFF202329,
-                        ),
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xFF202329),
                       ),
                     ),
-                    const SizedBox(
-                      height: 3,
-                    ),
+                    const SizedBox(height: 3),
                     Text(
                       count,
                       style: TextStyle(
                         fontSize: 12,
-                        color: Colors
-                            .grey.shade700,
+                        color: Colors.grey.shade700,
                       ),
                     ),
                   ],
@@ -1011,8 +797,7 @@ class HomeContent extends StatelessWidget {
               ),
               const Icon(
                 Icons.chevron_right,
-                color:
-                    Color(0xFF737780),
+                color: Color(0xFF737780),
                 size: 21,
               ),
             ],
