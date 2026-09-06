@@ -46,13 +46,12 @@ class ListPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-
               Expanded(
                 child: items.isEmpty
                     ? _buildEstadoVazio()
                     : ListView.separated(
                         itemCount: items.length,
-                        separatorBuilder: (_, __) =>
+                        separatorBuilder: (_, _) =>
                             const SizedBox(height: 12),
                         itemBuilder: (context, index) {
                           final item = items[index];
@@ -79,9 +78,7 @@ class ListPage extends StatelessWidget {
                                     );
                                   },
                                 ),
-
                                 const SizedBox(width: 8),
-
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
@@ -109,9 +106,7 @@ class ListPage extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-
                                 const SizedBox(width: 12),
-
                                 Column(
                                   crossAxisAlignment:
                                       CrossAxisAlignment.end,

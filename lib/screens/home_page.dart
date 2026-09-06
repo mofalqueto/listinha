@@ -146,7 +146,6 @@ class _HomePageState extends State<HomePage> {
   Widget _buildVersaoA() {
     return Scaffold(
       backgroundColor: const Color(0xFFFAF9F6),
-
       body: IndexedStack(
         index: selectedIndex,
         children: [
@@ -158,23 +157,19 @@ class _HomePageState extends State<HomePage> {
               onAbrirCategorias: _abrirCategoriasPelaHome,
             ),
           ),
-
           ListPage(
             items: items,
             onToggleComprado: _alternarComprado,
             onExcluirItem: _excluirItem,
           ),
-
           CategoriesPage(
             items: items,
           ),
-
           SettingsPage(
             onLimparLista: _limparLista,
           ),
         ],
       ),
-
       bottomNavigationBar: NavigationBar(
         height: 76,
         backgroundColor: Colors.white,
@@ -210,7 +205,6 @@ class _HomePageState extends State<HomePage> {
   Widget _buildVersaoB() {
     return Scaffold(
       backgroundColor: const Color(0xFFFAF9F6),
-
       body: IndexedStack(
         index: selectedIndex,
         children: [
@@ -222,19 +216,16 @@ class _HomePageState extends State<HomePage> {
               onAbrirCategorias: _abrirCategoriasPelaHome,
             ),
           ),
-
           ListPage(
             items: items,
             onToggleComprado: _alternarComprado,
             onExcluirItem: _excluirItem,
           ),
-
           SettingsPage(
             onLimparLista: _limparLista,
           ),
         ],
       ),
-
       bottomNavigationBar: NavigationBar(
         height: 76,
         backgroundColor: Colors.white,
@@ -353,9 +344,7 @@ class HomeContent extends StatelessWidget {
                                     FontWeight.w500,
                               ),
                             ),
-
                             const SizedBox(height: 5),
-
                             Text(
                               'Minha Listinha',
                               style: TextStyle(
@@ -369,9 +358,7 @@ class HomeContent extends StatelessWidget {
                                     const Color(0xFF17191D),
                               ),
                             ),
-
                             const SizedBox(height: 8),
-
                             Text(
                               'Organize suas compras de forma simples\ne prática.',
                               style: TextStyle(
@@ -385,9 +372,7 @@ class HomeContent extends StatelessWidget {
                           ],
                         ),
                       ),
-
                       const SizedBox(width: 12),
-
                       Container(
                         width: compact ? 58 : 70,
                         height: compact ? 58 : 70,
@@ -398,8 +383,8 @@ class HomeContent extends StatelessWidget {
                           boxShadow: [
                             BoxShadow(
                               color:
-                                  Colors.black.withOpacity(
-                                0.08,
+                                  Colors.black.withValues(
+                                alpha: 0.08,
                               ),
                               blurRadius: 15,
                               offset:
@@ -423,13 +408,9 @@ class HomeContent extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 28),
-
                   _buildTotalCard(compact),
-
                   const SizedBox(height: 30),
-
                   Row(
                     mainAxisAlignment:
                         MainAxisAlignment.spaceBetween,
@@ -444,7 +425,6 @@ class HomeContent extends StatelessWidget {
                               Color(0xFF17191D),
                         ),
                       ),
-
                       TextButton.icon(
                         onPressed: onAbrirCategorias,
                         icon: const Icon(
@@ -465,9 +445,7 @@ class HomeContent extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 12),
-
                   Row(
                     children: [
                       Expanded(
@@ -484,9 +462,7 @@ class HomeContent extends StatelessWidget {
                           onTap: onAbrirCategorias,
                         ),
                       ),
-
                       const SizedBox(width: 12),
-
                       Expanded(
                         child: _categoryCard(
                           icon: Icons.apple,
@@ -502,9 +478,7 @@ class HomeContent extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 12),
-
                   Row(
                     children: [
                       Expanded(
@@ -521,9 +495,7 @@ class HomeContent extends StatelessWidget {
                           onTap: onAbrirCategorias,
                         ),
                       ),
-
                       const SizedBox(width: 12),
-
                       Expanded(
                         child: _categoryCard(
                           icon: Icons.home_outlined,
@@ -539,9 +511,7 @@ class HomeContent extends StatelessWidget {
                       ),
                     ],
                   ),
-
                   const SizedBox(height: 30),
-
                   const Text(
                     'Minha lista',
                     style: TextStyle(
@@ -550,9 +520,7 @@ class HomeContent extends StatelessWidget {
                       color: Color(0xFF17191D),
                     ),
                   ),
-
                   const SizedBox(height: 13),
-
                   if (items.isEmpty)
                     _buildEstadoVazio(context)
                   else
@@ -581,7 +549,9 @@ class HomeContent extends StatelessWidget {
         borderRadius: BorderRadius.circular(30),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.12),
+            color: Colors.black.withValues(
+              alpha: 0.12,
+            ),
             blurRadius: 25,
             offset: const Offset(0, 12),
           ),
@@ -609,9 +579,7 @@ class HomeContent extends StatelessWidget {
                   size: 22,
                 ),
               ),
-
               const SizedBox(width: 13),
-
               const Expanded(
                 child: Text(
                   'TOTAL ESTIMADO',
@@ -624,7 +592,6 @@ class HomeContent extends StatelessWidget {
                   ),
                 ),
               ),
-
               Container(
                 padding:
                     const EdgeInsets.symmetric(
@@ -633,8 +600,8 @@ class HomeContent extends StatelessWidget {
                 ),
                 decoration: BoxDecoration(
                   color:
-                      Colors.white.withOpacity(
-                    0.09,
+                      Colors.white.withValues(
+                    alpha: 0.09,
                   ),
                   borderRadius:
                       BorderRadius.circular(13),
@@ -647,9 +614,7 @@ class HomeContent extends StatelessWidget {
                       size: 16,
                       color: Colors.white70,
                     ),
-
                     const SizedBox(width: 6),
-
                     Text(
                       '${items.length} itens',
                       style: const TextStyle(
@@ -664,9 +629,7 @@ class HomeContent extends StatelessWidget {
               ),
             ],
           ),
-
           const SizedBox(height: 17),
-
           Text(
             'R\$ ${_formatarPreco(totalEstimado)}',
             style: TextStyle(
@@ -676,9 +639,7 @@ class HomeContent extends StatelessWidget {
               letterSpacing: -1,
             ),
           ),
-
           const SizedBox(height: 20),
-
           ClipRRect(
             borderRadius:
                 BorderRadius.circular(10),
@@ -686,8 +647,8 @@ class HomeContent extends StatelessWidget {
               value: progresso,
               minHeight: 9,
               backgroundColor:
-                  Colors.white.withOpacity(
-                0.12,
+                  Colors.white.withValues(
+                alpha: 0.12,
               ),
               valueColor:
                   const AlwaysStoppedAnimation<
@@ -696,9 +657,7 @@ class HomeContent extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(height: 11),
-
           Text(
             items.isEmpty
                 ? 'Nenhum item comprado ainda'
@@ -733,8 +692,8 @@ class HomeContent extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             color:
-                Colors.black.withOpacity(
-              0.035,
+                Colors.black.withValues(
+              alpha: 0.035,
             ),
             blurRadius: 20,
             offset: const Offset(0, 8),
@@ -761,9 +720,7 @@ class HomeContent extends StatelessWidget {
               ),
             ),
           ),
-
           const SizedBox(height: 18),
-
           const Text(
             'Sua listinha está vazia',
             textAlign: TextAlign.center,
@@ -773,9 +730,7 @@ class HomeContent extends StatelessWidget {
               color: Color(0xFF17191D),
             ),
           ),
-
           const SizedBox(height: 8),
-
           Text(
             'Adicione produtos para começar\nsuas compras.',
             textAlign: TextAlign.center,
@@ -785,9 +740,7 @@ class HomeContent extends StatelessWidget {
               color: Colors.grey.shade600,
             ),
           ),
-
           const SizedBox(height: 20),
-
           FilledButton.icon(
             onPressed: () =>
                 _abrirAdicionarItem(
@@ -878,9 +831,7 @@ class HomeContent extends StatelessWidget {
                           Color(0xFFF2B900),
                     ),
                   ),
-
                   const SizedBox(width: 14),
-
                   Expanded(
                     child: Column(
                       crossAxisAlignment:
@@ -905,11 +856,9 @@ class HomeContent extends StatelessWidget {
                                     : null,
                           ),
                         ),
-
                         const SizedBox(
                           height: 4,
                         ),
-
                         Text(
                           '${item.categoria} • ${item.quantidade} un.',
                           style:
@@ -924,7 +873,6 @@ class HomeContent extends StatelessWidget {
                       ],
                     ),
                   ),
-
                   Text(
                     'R\$ ${_formatarPreco(item.total)}',
                     style:
@@ -941,9 +889,7 @@ class HomeContent extends StatelessWidget {
             ),
           ),
         ),
-
         const SizedBox(height: 4),
-
         SizedBox(
           width: double.infinity,
           child: OutlinedButton.icon(
@@ -1024,9 +970,7 @@ class HomeContent extends StatelessWidget {
                   size: 25,
                 ),
               ),
-
               const SizedBox(width: 11),
-
               Expanded(
                 child: Column(
                   crossAxisAlignment:
@@ -1051,11 +995,9 @@ class HomeContent extends StatelessWidget {
                         ),
                       ),
                     ),
-
                     const SizedBox(
                       height: 3,
                     ),
-
                     Text(
                       count,
                       style: TextStyle(
@@ -1067,7 +1009,6 @@ class HomeContent extends StatelessWidget {
                   ],
                 ),
               ),
-
               const Icon(
                 Icons.chevron_right,
                 color:

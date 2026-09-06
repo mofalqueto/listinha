@@ -119,7 +119,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
                 ),
                 const SizedBox(height: 6),
               ],
-
               const Text(
                 'Categorias',
                 style: TextStyle(
@@ -129,9 +128,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   color: Color(0xFF17191D),
                 ),
               ),
-
               const SizedBox(height: 6),
-
               const Text(
                 'Veja seus produtos organizados por categoria.',
                 style: TextStyle(
@@ -139,21 +136,18 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   color: Color(0xFF777D89),
                 ),
               ),
-
               const SizedBox(height: 24),
-
               SizedBox(
                 height: 130,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemCount: categorias.length,
-                  separatorBuilder: (_, __) =>
+                  separatorBuilder: (_, _) =>
                       const SizedBox(width: 12),
                   itemBuilder: (context, index) {
                     final categoria = categorias[index];
 
-                    final nome =
-                        categoria['nome'] as String;
+                    final nome = categoria['nome'] as String;
 
                     final selecionada =
                         categoriaSelecionada == nome;
@@ -208,9 +202,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                     ),
                                   ),
                                 ),
-
                                 const Spacer(),
-
                                 if (selecionada)
                                   const Icon(
                                     Icons.check_circle,
@@ -221,9 +213,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                   ),
                               ],
                             ),
-
                             const Spacer(),
-
                             Text(
                               nome,
                               style: const TextStyle(
@@ -235,9 +225,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                 ),
                               ),
                             ),
-
                             const SizedBox(height: 3),
-
                             Text(
                               '${_quantidadeCategoria(nome)} itens • R\$ ${_formatarPreco(_totalCategoria(nome))}',
                               style: const TextStyle(
@@ -254,9 +242,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   },
                 ),
               ),
-
               const SizedBox(height: 26),
-
               Row(
                 mainAxisAlignment:
                     MainAxisAlignment.spaceBetween,
@@ -271,7 +257,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       color: Color(0xFF17191D),
                     ),
                   ),
-
                   if (categoriaSelecionada != null)
                     TextButton(
                       onPressed: () {
@@ -289,15 +274,13 @@ class _CategoriesPageState extends State<CategoriesPage> {
                     ),
                 ],
               ),
-
               const SizedBox(height: 12),
-
               Expanded(
                 child: itensFiltrados.isEmpty
                     ? _buildEstadoVazio()
                     : ListView.separated(
                         itemCount: itensFiltrados.length,
-                        separatorBuilder: (_, __) =>
+                        separatorBuilder: (_, _) =>
                             const SizedBox(height: 10),
                         itemBuilder: (context, index) {
                           final item =
@@ -341,11 +324,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                     ),
                                   ),
                                 ),
-
                                 const SizedBox(
                                   width: 14,
                                 ),
-
                                 Expanded(
                                   child: Column(
                                     crossAxisAlignment:
@@ -371,11 +352,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                                   : null,
                                         ),
                                       ),
-
                                       const SizedBox(
                                         height: 4,
                                       ),
-
                                       Text(
                                         '${item.categoria} • ${item.quantidade} un.',
                                         style:
@@ -389,11 +368,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                     ],
                                   ),
                                 ),
-
                                 const SizedBox(
                                   width: 12,
                                 ),
-
                                 Column(
                                   crossAxisAlignment:
                                       CrossAxisAlignment
@@ -412,11 +389,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
                                         ),
                                       ),
                                     ),
-
                                     const SizedBox(
                                       height: 6,
                                     ),
-
                                     Icon(
                                       item.comprado
                                           ? Icons
@@ -468,9 +443,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               color: Color(0xFFF2B900),
             ),
           ),
-
           const SizedBox(height: 18),
-
           const Text(
             'Nenhum item por aqui',
             style: TextStyle(
@@ -479,9 +452,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               color: Color(0xFF17191D),
             ),
           ),
-
           const SizedBox(height: 8),
-
           Text(
             categoriaSelecionada == null
                 ? 'Sua listinha ainda não tem produtos.'
